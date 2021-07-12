@@ -25,7 +25,7 @@ while read line; do
         wget ${url}
         if ! echo "${md5sum}  ${packagename}" | md5sum --check -; then
             err "MD5sum check failed for ${name} v${version}. Removing the package"
-            #rm ${packagename}
+            rm ${packagename}
             popd
             exit 1
         fi
