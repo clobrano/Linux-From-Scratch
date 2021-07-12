@@ -4,17 +4,28 @@ set -e
 export LFS=/mnt/lfs
 export LFS_DISK=/dev/sdb
 
+function log() {
+    echo [+] $@
+}
+
+function err() {
+    echo [!] $@
+}
+
 function ask() {
     # ask for user consent before executing the command
     CMD=$@
-    echo "[+] exec ${CMD} ? [ENTER/Ctrl-C]"
-    read
-    ${CMD}
+    log "exec ${CMD} ? [ENTER/Ctrl-C]"
+    #${CMD}
 }
 
+export -f log
+export -f err
+export -f ask
+
 if ! mount | grep ${LFS} >/dev/null; then
-    echo [+] mounting ${LFS}
+    log mounting ${LFS}
     ask sudo mount -v -t ext4 ${LFS_DISK}2 ${LFS}
 fi
 
-
+source packages.sh

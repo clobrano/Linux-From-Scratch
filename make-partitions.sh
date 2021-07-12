@@ -4,21 +4,21 @@
 LFS_DISK=${LFS_DISK:-/dev/sdb}
 
 # Show currently mounted system
-echo "[+] This is the disk on ${LFS_DISK}"
+log "This is the disk on ${LFS_DISK}"
 sudo fdisk -l ${LFS_DISK}
-echo "[+] Create new partition?"
-echo "[+] Continue? [y/n]"
+log "Create new partition?"
+log "Continue? [y/n]"
 read response
 while :;do
     case ${response} in
         y|Y)
-            echo continue
+            log continue
             break;;
         n|N)
-            echo stop
+            log stop
             exit 0;;
         \?)
-            echo [+] Please answer either y or n.;;
+            log Please answer either y or n.;;
     esac
 done
 
