@@ -3,6 +3,7 @@
 set -e
 export LFS=/mnt/lfs
 export LFS_DISK=/dev/sdb
+export LFS_TGT=x86_64-lfs-linux-gnu
 
 function log() {
     echo [+] $@
@@ -28,4 +29,5 @@ if ! mount | grep ${LFS} >/dev/null; then
     ask sudo mount -v -t ext4 ${LFS_DISK}2 ${LFS}
 fi
 
-source packages.sh
+#source packages.sh
+source compile.sh stage1 binutils 
