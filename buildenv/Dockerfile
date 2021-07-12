@@ -30,6 +30,8 @@ RUN apt-get update && \
         texinfo \
         xz-utils
 
-WORKDIR /workspace
+RUN useradd lfs --create-home --shell /usr/bin/bash --no-log-init --password $(openssl passwd -1 ubuntu)
+USER lfs
+WORKDIR /home/lfs
 ENTRYPOINT ["bash"]
 
