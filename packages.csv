@@ -14,7 +14,7 @@ DejaGNU;1.6.2;http://ftp.gnu.org/gnu/dejagnu/dejagnu-1.6.2.tar.gz;e1b07516533f35
 Diffutils;3.7;http://ftp.gnu.org/gnu/diffutils/diffutils-3.7.tar.xz;4824adc0e95dbbf11dfbdfaad6a1e461
 E2fsprogs;1.46.1;https://downloads.sourceforge.net/project/e2fsprogs/e2fsprogs/v1.46.1/e2fsprogs-1.46.1.tar.gz;8c52585522b7ca6bdae2bdecba27b3a4
 Elfutils;0.183;https://sourceware.org/ftp/elfutils/0.183/elfutils-0.183.tar.bz2;6f58aa1b9af1a5681b1cbf63e0da2d67
-Expat;2.2.10;https://prdownloads.sourceforge.net/expat/expat-2.2.10.tar.xz;e0fe49a6b3480827c9455e4cfc799133
+Expat;2.4.1;https://prdownloads.sourceforge.net/expat/expat-2.4.1.tar.xz;a4fb91a9441bcaec576d4c4a56fa3aa6
 Expect;5.45.4;https://prdownloads.sourceforge.net/expect/expect5.45.4.tar.gz;00fce8de158422f5ccd2666512329bd2
 File;5.39;http://ftp.astron.com/pub/file/file-5.39.tar.gz;1c450306053622803a25647d88f80f25;
 Findutils;4.8.0;http://ftp.gnu.org/gnu/findutils/findutils-4.8.0.tar.xz;eeefe2e6380931a77dfa6d9350b43186
