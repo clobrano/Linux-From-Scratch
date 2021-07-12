@@ -13,12 +13,13 @@ sudo chmod -v a+wt ${LFS}/sources
 while read line; do
     name=`echo $line | cut -d";" -f1`
     version=`echo $line | cut -d";" -f2`
-    url=`echo $line | cut -d";" -f3`
+    url=`echo $line | cut -d";" -f3 | sed "s/@/$version/g"`
     md5sum=`echo $line | cut -d";" -f4`
     packagename=`basename ${url}`
 
     log "packagename=${packagename}"
 
+    continue
     if [ ! -f ${LFS}/sources/${packagename} ]; then
         pushd ${LFS}/sources
         log "Downloading ${name} v${version}"
