@@ -19,7 +19,6 @@ while read line; do
 
     log "packagename=${packagename}"
 
-    continue
     if [ ! -f ${LFS}/sources/${packagename} ]; then
         pushd ${LFS}/sources
         log "Downloading ${name} v${version}"
