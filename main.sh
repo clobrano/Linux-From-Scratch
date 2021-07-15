@@ -29,5 +29,7 @@ if ! mount | grep ${LFS} >/dev/null; then
     ask sudo mount -v -t ext4 ${LFS_DISK}2 ${LFS}
 fi
 
-#source packages.sh
-source compile.sh stage1 binutils 
+source packages.sh
+
+source compile.sh stage1 binutils
+source compile.sh stage1 gcc
