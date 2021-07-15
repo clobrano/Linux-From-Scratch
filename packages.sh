@@ -17,8 +17,6 @@ while read line; do
     md5sum=`echo $line | cut -d";" -f4`
     packagename=`basename ${url}`
 
-    log "packagename=${packagename}"
-
     if [ ! -f ${LFS}/sources/${packagename} ]; then
         pushd ${LFS}/sources
         log "Downloading ${name} v${version}"
