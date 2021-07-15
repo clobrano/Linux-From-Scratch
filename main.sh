@@ -17,7 +17,7 @@ function ask() {
     # ask for user consent before executing the command
     CMD=$@
     log "exec ${CMD} ? [ENTER/Ctrl-C]"
-    #${CMD}
+    ${CMD}
 }
 
 export -f log
@@ -25,7 +25,15 @@ export -f err
 export -f ask
 
 if ! mount | grep ${LFS} >/dev/null; then
-    log mounting ${LFS}
+    source ./make-partitions.sh
+
+    log "making mountpoint ${LFS}"
+    sudo mkdir -pv ${LFS}
+
+    log "mounting ${LFS_DISK}2 on ${LFS}"
+    ask "sudo mount -v -t ext4 ${LFS_DISK}2 ${LFS}"
+    sudo chown -v $USER ${LFS}
+
     ask sudo mount -v -t ext4 ${LFS_DISK}2 ${LFS}
 fi
 
