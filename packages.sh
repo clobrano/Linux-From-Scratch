@@ -30,3 +30,19 @@ while read line; do
         popd
     fi
 done < packages.csv
+
+# Some content (e.g. patches) is missing from my CSV above, use
+# the LFS list to complete the download.
+CWD=$(pwd)
+pushd ${LFS}/sources
+while read line; do
+    name=$(basename ${line})
+    #log "Checking ${name} (from ${line})"
+    if [[ $(ls ${name} | wc -l) == "1" ]]; then
+        #log "${name} already installed"
+        continue
+    fi
+    log "Downloading ${name}"
+    wget $line
+done < ${CWD}/packages.all.list
+popd

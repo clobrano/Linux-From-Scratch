@@ -43,7 +43,7 @@ while read line; do
     # moving inside ${LFS}/sources directory.
     build_script=`pwd`/build/${stage}/${project}.sh
     if [[ ! -f ${build_script} ]]; then
-        err "Project ${project} does not have a build script"
+        err "Project ${project} does not have a ${stage} build script"
         exit 1
     fi
     pushd ${LFS}/sources
@@ -63,8 +63,9 @@ while read line; do
     fi
 
     # Build the project
-    log "Building ${project} using $build_script"
-    source $build_script | tee ${LFS}/sources/build-logs/${project}.log
+    log_dir=${LFS}/sources/build-logs/${project}.log
+    log "Building ${project} using $build_script (logs in ${log_dir})"
+    source $build_script 2>&1 | tee ${log_dir} 
     log "Building ${project} done"
     popd
     popd

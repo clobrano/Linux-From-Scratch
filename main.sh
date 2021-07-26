@@ -37,7 +37,12 @@ if ! mount | grep ${LFS} >/dev/null; then
     ask sudo mount -v -t ext4 ${LFS_DISK}2 ${LFS}
 fi
 
+# Download all packages
 source packages.sh
 
-source compile.sh stage1 binutils
-source compile.sh stage1 gcc
+# Builds stage 1
+declare -a stage1_list=(binutils gcc linux glibc libstdc++)
+for package in ${stage1_list[@]}; do
+    log "[Stage 1] $package..."
+    source compile.sh stage1 $package || rm -r ${LFS}/sources/package
+done
