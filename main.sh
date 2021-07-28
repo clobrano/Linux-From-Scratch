@@ -44,5 +44,5 @@ source packages.sh
 declare -a stage1_list=(binutils gcc linux glibc libstdc++)
 for package in ${stage1_list[@]}; do
     log "[Stage 1] $package..."
-    source compile.sh stage1 $package || rm -r ${LFS}/sources/package
+    source compile.sh stage1 $package
 done
