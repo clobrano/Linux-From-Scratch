@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # -*- coding: UTF-8 -*-
-set -u
 stage=$1
 name=$2
 
@@ -62,7 +61,7 @@ while read line; do
     if [[ ! -d ${project} ]]; then
         log "Extracting ${project}"
         mkdir -pv ${project}
-        tar xf ${packagename} --directory=${project} 
+        tar vxf ${packagename} --directory=${project} 
     fi
 
     pushd ${project}
@@ -77,12 +76,14 @@ while read line; do
     # Build the project
     log_dir=${LFS}/sources/build-logs/${name}.log
     log "Building ${project} using $build_script (logs in ${log_dir})"
-    source $build_script 2>&1 | tee ${log_dir}
-    if [[ $? == 0 ]]; then
+    if source $build_script 2>&1 | tee ${log_dir}; then
         log "Building ${name} done"
         touch ${LFS}/sources/${name}.built
     else
         err "Building ${name} failed"
+        popd
+        popd
+        exit 1
     fi
     popd
     popd

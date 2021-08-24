@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 # -*- coding: UTF-8 -*-
-set -e
 export LFS=/mnt/lfs
 export LFS_DISK=/dev/sdb
 export LFS_TGT=x86_64-lfs-linux-gnu
+export PATH=$LFS/tools/bin:$PATH
+export CONFIG_SITE=$LFS/usr/share/config.site
+
+compileonly=$1
 
 function log() {
     echo [+] $@
@@ -43,6 +46,9 @@ source packages.sh
 # Builds stage 1
 declare -a stage1_list=(binutils gcc linux glibc libstdc++)
 for package in ${stage1_list[@]}; do
+    if [[ -n $compileonly ]] && [[ $compileonly != $package ]]; then
+        continue
+    fi
     log "[Stage 1] $package..."
     source compile.sh stage1 $package
 done
